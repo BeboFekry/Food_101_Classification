@@ -308,7 +308,9 @@ model = tf.lite.Interpreter(model_path="model.tflite")
 model.allocate_tensors()
 
 url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
-response = requests.get(url1, stream=True)
+session = requests.Session()
+response = session.get(url1, stream=True)
+# response = requests.get(url1, stream=True)
 with open("model1.tflite", 'wb') as f:
     f.write(response.content)
 model1 = tf.lite.Interpreter(model_path="model1.tflite")
