@@ -749,7 +749,8 @@ from tensorflow.keras.utils import img_to_array, load_img
 # model16.allocate_tensors()
 
 def rescale(img):
-    img2 = img_to_array(img)
+    # img2 = img_to_array(img)
+    img2 = img
     img2 = img2/255
     img2 = img2.reshape(1,224,224,3)
     return img2
@@ -951,15 +952,15 @@ st.info("Medical Imaging Scan - Easy Healthcare for Anyone Anytime")
 # img = st.image_input()
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
-    with open((uploaded_file.name), "wb") as f:
-      f.write(uploaded_file.getbuffer())
+    # with open((uploaded_file.name), "wb") as f:
+    #   f.write(uploaded_file.getbuffer())
     # To read image file buffer with PIL
-    # img = Image.open(uploaded_file)
-    img = load_img(f"{uploaded_file.name}", target_size=(224,224))
+    image = Image.open(uploaded_file)
+    # img = load_img(f"{uploaded_file.name}", target_size=(224,224))
     # Convert image to numpy array if needed
-    # img = np.array(img)
+    img = np.array(image)
     # Display the uploaded image
-    st.image(img, caption='Uploaded Image.', use_column_width=True)
+    st.image(image, caption='Uploaded Image.', use_column_width=True)
     # Save the uploaded file
     # save_uploaded_file(uploaded_file)
     output = predict(model,rescale(img)).argmax()
