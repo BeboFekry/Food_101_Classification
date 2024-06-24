@@ -313,12 +313,12 @@ with open("model.tflite", 'wb') as f:
 model = tf.lite.Interpreter(model_path="model.tflite")
 model.allocate_tensors()
 
-url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
-response = requests.get(url1, stream=True)
-with open("model1.tflite", 'wb') as f:
-    f.write(response.content)
-model1 = tf.lite.Interpreter(model_path="model1.tflite")
-model1.allocate_tensors()
+# url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
+# response = requests.get(url1, stream=True)
+# with open("model1.tflite", 'wb') as f:
+#     f.write(response.content)
+# model1 = tf.lite.Interpreter(model_path="model1.tflite")
+# model1.allocate_tensors()
 
 # session = requests.Session()
 # file_id="1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
