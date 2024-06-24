@@ -951,14 +951,13 @@ st.info("Medical Imaging Scan - Easy Healthcare for Anyone Anytime")
 # message = st.chat_input("Say something")
 # img = st.image_input()
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-# with open((img.name), "wb") as f:
-#   f.write(img.getbuffer())
+with open((uploaded_file.name), "wb") as f:
+  f.write(uploaded_file.getbuffer())
 if uploaded_file is not None:
     # To read image file buffer with PIL
     img = Image.open(uploaded_file)
     # Convert image to numpy array if needed
     img = np.array(img)
-    st.write(type(img)
     # Display the uploaded image
     st.image(img, caption='Uploaded Image.', use_column_width=True)
     
