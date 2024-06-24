@@ -3,3 +3,6 @@ numpy
 tensorflow==2.15.0
 requests
 Pillow
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
