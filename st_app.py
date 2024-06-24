@@ -955,5 +955,5 @@ img = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 if img is None:
     pass
 else:
-    output = predict(model,img)
+    output = predict(model,rescale(img)).argmax()
     st.write(output)
