@@ -302,15 +302,13 @@ def predict(model,img):
 
 url = "https://drive.google.com/uc?id=1MTntYoyzv_Y2veMiC90eQqwF8m7GYJmM"
 response = requests.get(url)
-type(response.content)
 with open("model.tflite", 'wb') as f:
     f.write(response.content)
 model = tf.lite.Interpreter(model_path="model.tflite")
 model.allocate_tensors()
 
-url1 = "https://drive.google.com/uc?if=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
+url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
 response = requests.get(url1)
-type(response.content)
 with open("model1.tflite", 'wb') as f:
     f.write(response.content)
 model1 = tf.lite.Interpreter(model_path="model1.tflite")
