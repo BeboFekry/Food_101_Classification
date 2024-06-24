@@ -113,7 +113,7 @@ calories = s.splitlines()
 s = "These values are approximations and can vary based on factors such as ingredients and cooking methods."
 
 def rescale(img):
-    img2 = img
+    img2 = img_to_array(img)
     img2 = img2/255
     img2 = img2.reshape(1,224,224,3)
     return img2
@@ -319,14 +319,14 @@ if uploaded_file is not None:
     #   f.write(uploaded_file.getbuffer())
     # To read image file buffer with PIL
     image = Image.open(uploaded_file)
+    image = image.resize((224, 224))
     # img = load_img(f"{uploaded_file.name}", target_size=(224,224))
     # Convert image to numpy array if needed
-    img = np.array(image)
     # Display the uploaded image
     st.image(image, caption='Uploaded Image.', use_column_width=True)
     # Save the uploaded file
     # save_uploaded_file(uploaded_file)
-    img = rescale(img)
+    img = rescale(image)
     output = predict(model,img).argmax()
     st.write(output)
 # if img is None:
