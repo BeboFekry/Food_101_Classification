@@ -4,7 +4,7 @@ import numpy as np
 import requests
 import tensorflow as tf
 from PIL import Image
-from tensorflow.keras.utils import img_to_array
+from tensorflow.keras.utils import img_to_array, load_img
 
 # scan_info = {"Avulsion fracture": """Overview
 # - What is an avulsion fracture?
@@ -749,7 +749,7 @@ from tensorflow.keras.utils import img_to_array
 # model16.allocate_tensors()
 
 def rescale(img):
-    # img2 = img_to_array(img)
+    img2 = img_to_array(img)
     img2 = img
     img2 = img2/255
     img2 = img2.reshape(1,224,224,3)
@@ -955,9 +955,10 @@ with open((uploaded_file.name), "wb") as f:
   f.write(uploaded_file.getbuffer())
 if uploaded_file is not None:
     # To read image file buffer with PIL
-    img = Image.open(uploaded_file)
+    # img = Image.open(uploaded_file)
+    img = load_img(uploaded_file)
     # Convert image to numpy array if needed
-    img = np.array(img)
+    # img = np.array(img)
     # Display the uploaded image
     st.image(img, caption='Uploaded Image.', use_column_width=True)
     
