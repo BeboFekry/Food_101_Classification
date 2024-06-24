@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 import requests
 import tensorflow as tf
+from PIL import Image
 from tensorflow.keras.utils import img_to_array
 
 # scan_info = {"Avulsion fracture": """Overview
@@ -748,7 +749,7 @@ from tensorflow.keras.utils import img_to_array
 # model16.allocate_tensors()
 
 def rescale(img):
-    img2 = img_to_array(img)
+    # img2 = img_to_array(img)
     img2 = img2/255
     img2 = img2.reshape(1,224,224,3)
     return img2
@@ -948,12 +949,23 @@ st.title("I-Care")
 st.info("Medical Imaging Scan - Easy Healthcare for Anyone Anytime")
 # message = st.chat_input("Say something")
 # img = st.image_input()
-img = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-
-
-
-if img is None:
-    pass
-else:
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+# with open((img.name), "wb") as f:
+#   f.write(img.getbuffer())
+if uploaded_file is not None:
+    # To read image file buffer with PIL
+    img = Image.open(uploaded_file)
+    # Convert image to numpy array if needed
+    img = np.array(img)
+    # Display the uploaded image
+    st.image(img, caption='Uploaded Image.', use_column_width=True)
+    
+    # Save the uploaded file
+    # save_uploaded_file(uploaded_file)
     output = predict(model,rescale(img)).argmax()
     st.write(output)
+# if img is None:
+#     pass
+# else:
+#     output = predict(model,rescale(img)).argmax()
+#     st.write(output)
