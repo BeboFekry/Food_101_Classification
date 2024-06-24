@@ -306,27 +306,33 @@ def get_confirm_token(response):
             return value
     return None
 
-# url = "https://drive.google.com/uc?id=1MTntYoyzv_Y2veMiC90eQqwF8m7GYJmM"
-# response = requests.get(url)
-# with open("model.tflite", 'wb') as f:
-#     f.write(response.content)
-# model = tf.lite.Interpreter(model_path="model.tflite")
-# model.allocate_tensors()
+url = "https://drive.google.com/uc?id=1MTntYoyzv_Y2veMiC90eQqwF8m7GYJmM"
+response = requests.get(url)
+with open("model.tflite", 'wb') as f:
+    f.write(response.content)
+model = tf.lite.Interpreter(model_path="model.tflite")
+model.allocate_tensors()
 
 url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
-session = requests.Session()
-file_id="1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
-response = session.get(url1, params={'id': file_id}, stream=True)
-token = get_confirm_token(response)
-if token:
-    params = {'id': file_id, 'confirm': token}
-    response = session.get(URL, params=params, stream=True)
-
-# response = requests.get(url1, stream=True)
+response = requests.get(url1, stream=True)
 with open("model1.tflite", 'wb') as f:
     f.write(response.content)
 model1 = tf.lite.Interpreter(model_path="model1.tflite")
 model1.allocate_tensors()
+
+# session = requests.Session()
+# file_id="1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
+# response = session.get(url1, params={'id': file_id}, stream=True)
+# token = get_confirm_token(response)
+# if token:
+#     params = {'id': file_id, 'confirm': token}
+#     response = session.get(URL, params=params, stream=True)
+
+# response = requests.get(url1, stream=True)
+# with open("model1.tflite", 'wb') as f:
+#     f.write(response.content)
+# model1 = tf.lite.Interpreter(model_path="model1.tflite")
+# model1.allocate_tensors()
 
 st.image("cropedLogo.png")
 st.title("I-Care")
