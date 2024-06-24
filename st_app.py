@@ -328,7 +328,7 @@ if uploaded_file is not None:
     # save_uploaded_file(uploaded_file)
     img = rescale(image)
     output = predict(model,img).argmax()
-    st.write(output)
+    st.write(calories[output])
 # if img is None:
 #     pass
 # else:
