@@ -950,17 +950,16 @@ st.info("Medical Imaging Scan - Easy Healthcare for Anyone Anytime")
 # message = st.chat_input("Say something")
 # img = st.image_input()
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-with open((uploaded_file.name), "wb") as f:
-  f.write(uploaded_file.getbuffer())
 if uploaded_file is not None:
+    with open((uploaded_file.name), "wb") as f:
+      f.write(uploaded_file.getbuffer())
     # To read image file buffer with PIL
     # img = Image.open(uploaded_file)
-    img = load_img("{uploaded_file.name}")
+    img = load_img(uploaded_file, target_size=(224,224))
     # Convert image to numpy array if needed
     # img = np.array(img)
     # Display the uploaded image
     st.image(img, caption='Uploaded Image.', use_column_width=True)
-    
     # Save the uploaded file
     # save_uploaded_file(uploaded_file)
     output = predict(model,rescale(img)).argmax()
