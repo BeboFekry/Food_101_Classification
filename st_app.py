@@ -958,6 +958,7 @@ if uploaded_file is not None:
     img = Image.open(uploaded_file)
     # Convert image to numpy array if needed
     img = np.array(img)
+    st.write(type(img)
     # Display the uploaded image
     st.image(img, caption='Uploaded Image.', use_column_width=True)
     
