@@ -300,6 +300,12 @@ def predict(model,img):
 #       output = output+"ERROR: Unsupported image object!\nPlease try to enter a valid 'Medical imaging' or 'food' image\n"
 #   return output
 
+def get_confirm_token(response):
+    for key, value in response.cookies.items():
+        if key.startswith('download_warning'):
+            return value
+    return None
+
 url = "https://drive.google.com/uc?id=1MTntYoyzv_Y2veMiC90eQqwF8m7GYJmM"
 response = requests.get(url)
 with open("model.tflite", 'wb') as f:
@@ -309,7 +315,15 @@ model.allocate_tensors()
 
 url1 = "https://drive.google.com/uc?id=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
 session = requests.Session()
-response = session.get(url1, stream=True)
+file_id="1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
+response = session.get(URL, params={'id': file_id}, stream=True)
+    token = get_confirm_token(response)
+    if token:
+        params = {'id': file_id, 'confirm': token}
+        response = session.get(URL, params=params, stream=True)
+
+    save_response_content(response, destination)
+
 # response = requests.get(url1, stream=True)
 with open("model1.tflite", 'wb') as f:
     f.write(response.content)
