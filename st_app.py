@@ -308,6 +308,14 @@ with open("model.tflite", 'wb') as f:
 model = tf.lite.Interpreter(model_path="model.tflite")
 model.allocate_tensors()
 
+url1 = "https://drive.google.com/uc?if=1ApURHKn-qiDps2lZclpRGxoZdkyDjTyr"
+response = requests.get(url1)
+type(response.content)
+with open("model1.tflite", 'wb') as f:
+    f.write(response.content)
+model1 = tf.lite.Interpreter(model_path="model1.tflite")
+model1.allocate_tensors()
+
 st.image("cropedLogo.png")
 st.title("I-Care")
 st.info("Medical Imaging Scan - Easy Healthcare for Anyone Anytime")
