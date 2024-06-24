@@ -955,7 +955,7 @@ with open((uploaded_file.name), "wb") as f:
 if uploaded_file is not None:
     # To read image file buffer with PIL
     # img = Image.open(uploaded_file)
-    img = load_img(uploaded_file)
+    img = load_img("{uploaded_file.name}")
     # Convert image to numpy array if needed
     # img = np.array(img)
     # Display the uploaded image
