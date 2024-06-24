@@ -963,7 +963,8 @@ if uploaded_file is not None:
     st.image(image, caption='Uploaded Image.', use_column_width=True)
     # Save the uploaded file
     # save_uploaded_file(uploaded_file)
-    output = predict(model,rescale(img)).argmax()
+    img = rescale(img)
+    output = predict(model,img).argmax()
     st.write(output)
 # if img is None:
 #     pass
