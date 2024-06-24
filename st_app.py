@@ -750,6 +750,7 @@ from tensorflow.keras.utils import img_to_array
 
 def rescale(img):
     # img2 = img_to_array(img)
+    img2 = img
     img2 = img2/255
     img2 = img2.reshape(1,224,224,3)
     return img2
