@@ -322,8 +322,6 @@ if token:
     params = {'id': file_id, 'confirm': token}
     response = session.get(URL, params=params, stream=True)
 
-save_response_content(response, destination)
-
 # response = requests.get(url1, stream=True)
 with open("model1.tflite", 'wb') as f:
     f.write(response.content)
