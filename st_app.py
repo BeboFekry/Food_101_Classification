@@ -300,11 +300,11 @@ def predict(model,img):
 #       output = output+"ERROR: Unsupported image object!\nPlease try to enter a valid 'Medical imaging' or 'food' image\n"
 #   return output
 
-def get_confirm_token(response):
-    for key, value in response.cookies.items():
-        if key.startswith('download_warning'):
-            return value
-    return None
+# def get_confirm_token(response):
+#     for key, value in response.cookies.items():
+#         if key.startswith('download_warning'):
+#             return value
+#     return None
 
 url = "https://drive.google.com/uc?id=1MTntYoyzv_Y2veMiC90eQqwF8m7GYJmM"
 response = requests.get(url)
